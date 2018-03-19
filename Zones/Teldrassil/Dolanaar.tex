@@ -1,0 +1,56 @@
+\subzone{Dolanaar}
+
+TODO Giant Ancient protector (purple) passes by you, he is the guard of Dolanaar. Entering the city, you make your way to Innkeeper Keldamyr.
+
+\progress{Dolanaar Delivery}
+
+You show Keldamyr the herb package.
+
+\complete{Dolanaar Delivery}
+
+\alliance{Noting the innkeeper's advice, you decide to bring the phial of moonwell water to Corithas Moonrage first. Hopefully, you can see Dolanaar's moonwell from the inn. It is watched upon by a Teldrassil Sentinel, and two night elves, one of which must be Corithas.}
+\newline
+\goto{Silithus}
+
+\horde{On your way out of the inn, you notice a Night Elf clad in heavy armor. He has multiple Teldrassil Sentinels around him. He looks to be in charge here. As you pass by him, he addresses you.}
+\newline
+\goto{Silithus}
+
+\start{A Troubling Breeze}
+
+Startled by the directiveness of the request but wanting to
+%TODO: directiveness, really ? I'm not sure I won't put this after the night of rest, though.
+
+You continue your way to the moonwell, as Corithas notices your approach.
+
+\progress{Teldrassil: Passing Awareness}
+
+You show Corithas the Partially Filled Vessel containing the water from the moonwell of Shadowglen.
+
+\complete{Teldrassil: Passing Awareness}
+
+A spirit scene comes to life again from the moonwell waters.
+
+\custom[Quest]{Teldrassil: Passing Awareness}{Transcript}
+
+\start{Teldrassil: The Refusal of the Aspects}
+
+% TODO New order of events:
+% 1. Be directed to go to Starbreeze Village by Corithas
+% 2. Take a rest
+% 3. Go to Starbreeze Village, be accosted for the dreamcatcher
+% 4. Fill the phial at the moonwell, realize the village is overrun by furbolgs
+% 5. Rummage a few buildings, start from the left, find the dreamcatcher
+% 6. Go back to Dolanaar, Corithas, then the dreamcatcher guy is unhappy ....
+% 7. ... and I need to find a way for Athridas to address me... maybe move the nap there, after Starbreeze Village ? (en mode "quoi, je dois y retourner ?" pff dodo)
+\progress{Teldrassil: The Refusal of the Aspects}
+\complete{Teldrassil: The Refusal of the Aspects}
+
+Exhausted by your adventures, you decide to heed the innkeeper's advice before going to Starbreeze Village. Assuring Corithas that he will see you tomorrow with the vials, you decide to head back to the inn and take a rest.
+
+\ask{Did you do Zenn's Bidding before arriving in Dolanaar ?}
+\goto{Seek Redemption!}
+
+When you wake and walk towards the eastern end of Dolanaar and towards Starbreeze Village, a Night Elf who noticed the direction you were taking accosts you.
+
+\goto{Starbreeze Village}

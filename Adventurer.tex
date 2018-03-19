@@ -1,0 +1,164 @@
+\documentclass{book}                    % For two-sided book page style
+\usepackage[a5paper]{geometry}          % For a5 paper size
+\usepackage{palatino}                   % For Palatino fonts
+\usepackage{suffix}                     % For starred commands (tlmgr bigfoot)
+\usepackage{pdflscape}                  % For landscape map pages
+\usepackage{import}                     % For importing nested folders
+\usepackage{fancyhdr}                   % For complicated headers and footers
+\usepackage{marginnote}                 % For faction sidenotes
+\usepackage[export]{adjustbox}
+% \geometry{bindingoffset=1.5cm}
+
+% Clear default headers and footers
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+
+% \newcommand{\sectionbreak}{\cleardoublepage}
+\setlength{\parskip}{\baselineskip}
+\newwrite\tempfile
+
+\begin{document}
+
+\newcommand {\race}{adventurer}
+\newcommand {\class}{adventurer}
+\newcommand {\character}{Adventurer}
+\newcommand {\map}[1]{
+    \fancyhead{}
+    \fancyfoot{}
+    %https://tex.stackexchange.com/questions/155925/how-to-get-included-pdf-pages-adjusted-to-left-and-right-pages-in-a-book
+    \mbox{}\par\vspace{6.8cm}
+    \hspace*{-.25\marginparwidth}\makebox[\textwidth][c]{\raisebox{-.5\height}[0pt][0pt]{\includegraphics[height=0.6\paperheight,angle=90]{Maps/#1.jpg}}}\par\label{#1}
+    \vfill\mbox{}
+}
+\newcommand {\prepareQuestURI}[1] {
+    \immediate\openout\tempfile=page.tmp
+    \immediate\write\tempfile{#1}
+    \immediate\closeout\tempfile
+    \immediate\write18{cat page.tmp | perl uri_escape.pl > page_uri.tmp}
+}
+\newcommand {\custom}[3][] {
+    \prepareQuestURI{#2}
+    \input|"./cache.sh #1 | perl extract_data.pl '#3' \character"
+}
+\newcommand {\quest}[1] {
+    \custom[Quest]{#1}{Description}
+}
+\newcommand {\questA}[1] {
+    \quest{#1 (Alliance)}
+}
+\newcommand {\questH}[1] {
+    \quest{#1 (Horde)}
+}
+\newcommand {\start}[1] {
+    \quest{#1}
+}
+\newcommand {\complete}[1] {
+    \custom[Quest]{#1}{Completion}
+}
+\newcommand {\completeA}[1] {
+    \complete{#1 (Alliance)}
+}
+\newcommand {\completeH}[1] {
+    \complete{#1 (Horde)}
+}
+\newcommand {\progress}[1] {
+    \custom[Quest]{#1}{Progress}
+}
+\newcommand {\progressA}[1] {
+    \progress{#1 (Alliance)}
+}
+\newcommand {\progressH}[1] {
+    \progress{#1 (Horde)}
+}
+\WithSuffix\newcommand\progress*[1] {
+    % TODO: Improve the perl script to *not* do 'npc says' in this case
+    STAR\custom[Quest]{#1}{Progress}
+}
+\newcommand {\dialogue}[2][] {          % For NPCs, can be overriden
+    \custom[#1]{#2}{Dialogue}
+}
+\newcommand {\quotes}[2][Quotes] {      % For NPCs, cannot be overriden
+    \custom{#2}{#1}
+}
+\newcommand {\flower}[1] {
+    % TODO: Make an index of flowers
+    #1
+}
+\newcommand*\cleartoleftpage{
+  \clearpage
+  \ifodd\value{page}\hbox{}\newpage\fi
+}
+\newcommand {\zone}[2] {
+    \cleartoleftpage
+    \map{#1}
+    \chapter*{\centering #1}
+    \fancyhead[L]{
+        \sc #1
+        \includegraphics[scale=0.4,valign=c]{Icons/MinimapArrowSmall.png} \pageref{#1}
+    }
+    \fancyfoot[LE,RO]{\thepage}
+    \fancyfoot[RE,LO]{
+        \includegraphics[scale=0.4,valign=m]{Icons/Hearthstone.png} 57
+    }
+    \addcontentsline{toc}{chapter}{#1}
+    \import{Zones/#1/}{#1}
+}
+\newcommand {\breadcrumb}[1] {
+    \fancyhead[R]{\sc #1}
+    \subsection*{\centering#1}
+    \addcontentsline{toc}{section}{#1}
+    \label{#1}
+}
+\newcommand {\subzone}[1] {
+    \clearpage
+    \breadcrumb{#1}
+}
+\newcommand {\ask}[1] {
+    \noindent$\longrightarrow$ \textit{#1}\newline
+}
+\newcommand {\goto}[2][] {
+    \indent$\hookrightarrow$ #1 \includegraphics[scale=0.4,valign=m]{Icons/Book.png} \textit{\pageref{#2}}
+}
+\newenvironment{faction}[1]{
+    \leavevmode\marginnote{
+        \includegraphics[scale=0.7]{Icons/#1.png}
+    }\ignorespaces
+}{}
+\newcommand {\alliance}[1]{
+    \begin{faction}{Alliance}
+        #1
+    \end{faction}
+}
+\newcommand {\horde}[1]{
+    \begin{faction}{Horde}
+        #1
+    \end{faction}
+}
+\newcommand {\miss}[1]{#1}  % Used to indicate what is missing from wowpedia
+
+\renewcommand{\contentsname}{Flight Master}
+
+\addtocontents{toc}{
+    Eager to travel fast around the world, you make your way to the nearest Flight Master. He eyes you warily until you hand him a small pouch of coins. He suddenly looks way more willing to discuss business with you.
+
+    Flight Master says: Where do you want to go, \class ?\par
+}
+
+\title{
+    World of Warcraft\\\character
+}
+\author{Blizzard Entertainment}
+\date{}
+\maketitle
+
+% \part{Cataclysm (1-60)}
+
+\zone{Teldrassil}
+
+\zone{Silithus}
+
+\tableofcontents
+
+\end{document}

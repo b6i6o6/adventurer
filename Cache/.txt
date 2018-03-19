@@ -1,0 +1,217 @@
+<div id="mp-outer-container"><!--
+
+ Start left column 
+--><div style="width: 60%; margin: 0; border: 0; padding: 0.5%; float: left; min-width: 30em;"><!--
+
+ HAI! 
+--><div style="margin:0.85em 0 0em 0; padding:0.5em; text-align:center;">
+'''<span style="font-size:135%;">Welcome to [[Wowpedia:About|<span class="speciallink" style="cursor:help;">Wowpedia</span>]]!</span>'''<br/><span style="font-size:100%;">The free [[World of Warcraft|<span class="speciallink">World of Warcraft</span>]] encyclopedia that '''anyone''' can edit!</span>
+</div><!--
+
+ FEATURED ARTICLE 
+--><!--
+
+ LEGION INFO 
+--><div class="mpcontentbox bg-darkgray" style="margin-top:0em;">
+<h3>Welcome to the Legion information center!</h3>
+{| class="mpcontentbox-table break-400" style="border-spacing:0px" id="mf-legion" title="Legion"
+| valign="top" style="width: 50%; padding-right: 1em" |
+'''Legion instances'''
+* [[Assault on Violet Hold]]
+* [[Black Rook Hold]]
+* [[Court of Stars]]
+* [[Darkheart Thicket]]
+* [[Eye of Azshara (instance)|Eye of Azshara]]
+* [[Halls of Valor]]
+* [[Maw of Souls]]
+* [[Neltharion's Lair]]
+* [[Arcway|The Arcway]]
+* [[Vault of the Wardens]]
+* [[Return to Karazhan]]
+* [[Cathedral of Eternal Night]]
+* [[Seat of the Triumvirate]]
+
+'''Raids'''
+* [[Emerald Nightmare (instance)|The Emerald Nightmare]]
+* [[Nighthold (instance)|The Nighthold]]
+* [[Trial of Valor]]
+* [[Tomb of Sargeras (instance)|Tomb of Sargeras]]
+* [[Antorus, the Burning Throne]]
+
+'''PvP'''
+* [[Honor talent]]s
+<!-- * [[Legion Season 1]] -->
+
+| valign="top" |
+'''New zones'''
+*[[Azsuna]] (100-110)
+*[[Highmountain]] (100-110)
+*[[Stormheim]] (100-110)
+*[[Val'sharah]] (100-110)
+*[[Suramar]] (110)
+*[[Broken Shore]] (110+)
+*[[Krokuun]] (110++)
+*[[Mac'Aree]] (110++)
+*[[Antoran Wastes]] (110++)
+
+'''New systems'''
+* [[Appearances]]
+* [[Artifact]]s
+* [[Class Hall]]
+
+'''Factions''' ([[Legion reputation rewards|reputation rewards]])
+* [[Court of Farondis]]
+* [[Dreamweavers]]
+* [[Highmountain Tribe]]
+* [[The Nightfallen]]
+* [[The Wardens]]
+* [[Valarjar]]
+* [[Armies of Legionfall]]
+* [[Argussian Reach]]
+* [[Army of the Light]]
+|}
+</div><!--
+
+ GENERIC WOW CONTENT, stuff that's always relevant: classes, professions and so on
+ --><div class="mpcontentbox bg-darkgray"><h3>Selected Wowpedia links</h3>
+{| class="mpcontentbox-table break-400" style="border-spacing:0px" id="mf-wow-links" title="Selected Wowpedia links"
+|-
+| valign="top" |
+{| style="border-spacing:0px;white-space: nowrap; width: 100%"
+! style="margin-left: -0.5em; text-align: left; padding: 0 0 .1em 0" colspan="2" | Classes
+|-
+| valign="top" align="left" style="width: 50%; padding: 0 .5em" |
+{{class|Death knight}}<br>
+{{class|Demon hunter}}<br>
+{{class|Druid}}<br>
+{{class|Hunter}}<br>
+{{class|Mage}}<br>
+{{class|Monk}}
+
+| valign="top" align="left" style="width: 50%" |
+{{class|Paladin}}<br>
+{{class|Priest}}<br>
+{{class|Rogue}}<br>
+{{class|Shaman}}<br>
+{{class|Warlock}}<br>
+{{class|Warrior}}
+|-
+! style="margin-left: -0.5em; text-align: left; padding: .4em 0 .1em 0" colspan="2" | Professions
+|-
+| valign="top" align="left" style="padding: 0 .5em" |
+{{ProfIcon|Alchemy|size=16px}} [[Alchemy]]<br/>
+{{ProfIcon|Archaeology|size=16px}} [[Archaeology]]<br/>
+{{ProfIcon|Blacksmithing|size=16px}} [[Blacksmithing]]<br/>
+{{ProfIcon|Cooking|size=16px}} [[Cooking]]<br/>
+{{ProfIcon|Engineering|size=16px}} [[Engineering]]<br/>
+{{ProfIcon|Enchanting|size=16px}} [[Enchanting]]<br />
+[[File:Trade herbalism.png|16px|alt=|link=Herbalism]] [[Herbalism]]<br />
+{{ProfIcon|Fishing|size=16px}} [[Fishing]]<br/>
+| valign="top" align="left" |
+{{ProfIcon|Inscription|size=16px}} [[Inscription]]<br/>
+{{ProfIcon|Jewelcrafting|size=16px}} [[Jewelcrafting]]<br/>
+{{ProfIcon|Leatherworking|size=16px}} [[Leatherworking]]<br/>
+{{ProfIcon|Mining|size=16px}} [[Mining]]<br/>
+{{ProfIcon|Skinning|size=16px}} [[Skinning]]<br />
+[[File:Trade Tailoring.png|16px|alt=|link=Tailoring]] [[Tailoring]]<br />
+[[File:Spell holy sealofsacrifice.png|16px|alt=|link=First Aid]] [[First Aid]]
+|-
+! style="margin-left: -0.5em; text-align: left; padding: .4em 0 .1em 0" colspan="2" | Races
+|-
+| valign="top" align="left" style="padding: 0 .5em" |
+{{race|Human}}<br/>
+{{race|Night elf}}<br/>
+{{race|Dwarf}}<br/>
+{{race|Gnome}}<br/>
+{{race|Draenei}}<br/>
+{{race|Worgen}}<br/>
+{{race|Lightforged draenei}}<br/>
+{{race|Void elf}}<br/>
+{{race|Pandaren}}
+| valign="top" align="left" |
+{{race|Orc}}<br/>
+{{race|Troll}}<br/>
+{{race|Tauren}}<br/>
+{{race|Forsaken}}<br/>
+{{race|Blood elf}}<br/>
+{{race|Goblin}}<br/>
+{{race|Highmountain tauren}}<br/>
+{{race|Nightborne}}
+|}
+
+| valign="top" |
+'''World of Warcraft'''
+* [[Faction]]s
+* [[Guides]]
+* [[:Category:Zone storylines|Zone storylines]]
+* [[Event|In-game events]]
+* [[Instances by level]]
+* [[Battleground]]s
+* [[Mount]]s
+* [[Patches]]
+'''Warcraft Universe'''
+* [[Lore]]
+* [[Major characters]]
+* [[Organizations]]
+* [[Planet|Planets and Planes]]
+* [[Novels]], [[Manga]], [[Short stories]]
+'''Wowpedia'''
+* [[Forum:Index|Forums]]
+* [[Portal:Community|Community Portal]]
+|}
+</div><!-- 
+
+End left column 
+--></div><!-- 
+
+Begin right column 
+--><div style="width: 38%; margin:0 0 0 0; border 0; padding: 0.5%; float: left; min-width: 20em;"><!--
+
+ WOWPEDIA CONTENT PORTALS
+--><div class="mpcontentbox bg-darkgray"><h3>Wowpedia content portals</h3>
+{| class="mpcontentbox-table break-400" style="width: 100%; table-layout: fixed; text-align: center; font-weight: bold;" id="mf-portals" title="Wowpedia content portals"
+|-
+|[[File:WoW_Icon_18x18.png|alt=|link=Portal:World of Warcraft]] [[Portal:World of Warcraft|World of Warcraft]]
+|[[File:Instance_portal_red.png|alt=|link=Portal:Warcraft universe]] [[Portal:Warcraft universe|Warcraft universe]]
+|-
+|[[File:Instance_portal_blue.png|alt=|link=Portal:Interface customization]] [[Portal:Interface customization|Interface customization]]
+|[[File:Icon-template.svg|18px|alt=|link=Portal:Technical support]] [[Portal:Technical support|Technical support]]
+|-
+|[[File:Wowpedia_icon_stamp.png|18px|alt=|link=Portal:Community]] [[Portal:Community|Wowpedia community]]
+|
+|}
+</div><!-- 
+
+ WOWPEDIA NEWS
+--><div class="mpcontentbox bg-darkgray"><h3>News <span style="font-size:80%; float:right" class="plainlinks">[<nowiki></nowiki>[{{fullurl:Portal:Main/News|action=edit}} edit]]</span></h3><div id="mf-news" title="News">
+{{Portal:Main/News}}
+</div></div><!--
+
+ FEATURED MEDIA 
+--><div class="mpcontentbox bg-darkgray"><h3>Featured media</h3><div class="center" style="overflow-x: hidden">{{FM}}</div></div><!--
+
+ HELP, POLICIES, AND GUIDELINES 
+
+--><div>
+{{Portal:Main/Help}}
+</div><!--
+
+ End right column, end outer div
+ --></div>
+</div>
+
+<!-- Main languages -->
+[[es:]] <!-- Spanish -->
+[[fr:]] <!-- French -->
+
+<!-- Europe and America -->
+[[pl:]] <!-- Polish -->
+[[pt:]] <!-- Portuguese -->
+
+<!-- Asia -->
+[[ko:]] <!-- Korean -->
+
+[[Category:Wowpedia| ]]
+[[Category:Wowpedia portals| ]]
+__NOEDITSECTION__
+__NOTOC__
