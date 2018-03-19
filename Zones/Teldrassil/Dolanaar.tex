@@ -1,5 +1,3 @@
-\subzone{Dolanaar}
-
 TODO Giant Ancient protector (purple) passes by you, he is the guard of Dolanaar. Entering the city, you make your way to Innkeeper Keldamyr.
 
 \progress{Dolanaar Delivery}
@@ -8,20 +6,7 @@ You show Keldamyr the herb package.
 
 \complete{Dolanaar Delivery}
 
-\alliance{Noting the innkeeper's advice, you decide to bring the phial of moonwell water to Corithas Moonrage first. Hopefully, you can see Dolanaar's moonwell from the inn. It is watched upon by a Teldrassil Sentinel, and two night elves, one of which must be Corithas.}
-\newline
-\goto{Silithus}
-
-\horde{On your way out of the inn, you notice a Night Elf clad in heavy armor. He has multiple Teldrassil Sentinels around him. He looks to be in charge here. As you pass by him, he addresses you.}
-\newline
-\goto{Silithus}
-
-\start{A Troubling Breeze}
-
-Startled by the directiveness of the request but wanting to
-%TODO: directiveness, really ? I'm not sure I won't put this after the night of rest, though.
-
-You continue your way to the moonwell, as Corithas notices your approach.
+Noting the innkeeper's advice, you decide to bring the phial of moonwell water to Corithas Moonrage first. As you near Doloanaar's moonwell, Corithas notices your approach.
 
 \progress{Teldrassil: Passing Awareness}
 
@@ -35,22 +20,56 @@ A spirit scene comes to life again from the moonwell waters.
 
 \start{Teldrassil: The Refusal of the Aspects}
 
-% TODO New order of events:
-% 1. Be directed to go to Starbreeze Village by Corithas
-% 2. Take a rest
-% 3. Go to Starbreeze Village, be accosted for the dreamcatcher
-% 4. Fill the phial at the moonwell, realize the village is overrun by furbolgs
-% 5. Rummage a few buildings, start from the left, find the dreamcatcher
-% 6. Go back to Dolanaar, Corithas, then the dreamcatcher guy is unhappy ....
-% 7. ... and I need to find a way for Athridas to address me... maybe move the nap there, after Starbreeze Village ? (en mode "quoi, je dois y retourner ?" pff dodo)
+As you walk towards the eastern end of Dolanaar and towards Starbreeze Village, a Night Elf who noticed the direction you were taking accosts you.
+
+\start{The Emerald Dreamcatcher}
+% \progress*{The Emerald Dreamcatcher}  % Only the beginning makes sense here.
+
+Assuring him that you will look for his dreamcatcher, you travel east to Starbreeze Village. While on the road, you realize that the buildings that you first saw in the forst while exiting Shadowglen were actually Starbreeze Village. You notice the moonwell outside the village, and decide to stop by. As you approach the moonwell, a scene comes to life.
+
+\custom[Quest]{Teldrassil: The Refusal of the Aspects}{Quotes}
+
+You fill the Jade Vial that Corithas gave you with waters from the moonwell, then continue your way and head into Starbreeze Village. However, you discover that the village has been overrun by the Gnarlpine furbolgs, primitive bear-men, who attack you on sight.
+
+% TODO: furbolg description ?
+
+Fighting your way to the first building on the left, you start to look for the Emerald Dreamcatcher. Nothing of note is in there though, asides from a broken chair and table, so you try your luck with the second building.
+
+% TODO: books on the floor, and you should fight furbolgs !
+% TODO: I can say the first building is infested with furbolgs while the others seem less defended, hence why I did not search the first one !
+While the second building is in the same state as the first one, you notice a purple dresser which seems to have been kept intact by the furbolgs. You rummage through it and find the Emerald Dreamcatcher.
+
+Having found what you were looking for, you avoid the remaining furbolgs that are still roaming the village and the other buildings and escape Starbreeze Village to return to Dolanaar.
+
+You stop by Dolanaar's moonwell to hand Corithas the Jade Phial.
+
 \progress{Teldrassil: The Refusal of the Aspects}
 \complete{Teldrassil: The Refusal of the Aspects}
 
-Exhausted by your adventures, you decide to heed the innkeeper's advice before going to Starbreeze Village. Assuring Corithas that he will see you tomorrow with the vials, you decide to head back to the inn and take a rest.
+As you walk away from the moonwell and to the center of Dolanaar, you notice Tallonkai waiting for you. You hand him his dreamcatcher.
+
+% \progress{The Emerald Dreamcatcher}  % Only second part
+\complete{The Emerald Dreamcatcher}
+
+\start{Ferocitas the Dream Eater}  % TODO: this produces no output !?
+\progress*{Ferocitas the Dream Eater}
+
+Already tired from fighting the furbolgs in Starbreeze Village, you are not looking forward to going back there so soon. However, you reassure Tallonkai that you will look for his missing jewel as soon as you have had some rest.
 
 \ask{Did you do Zenn's Bidding before arriving in Dolanaar ?}
 \goto{Seek Redemption!}
 
-When you wake and walk towards the eastern end of Dolanaar and towards Starbreeze Village, a Night Elf who noticed the direction you were taking accosts you.
+After all these adventures, you feel quite tired and decide to finally heed the innkeeper's advice. Tallonkai's Jewel surely can wait for tommorrow, as you decide to take a rest in Dolanaar's inn.
 
-\goto{Starbreeze Village}
+\goto{The Great Warden's Warning}
+
+% TODO New order of events:
+% 1. Be directed to go to Starbreeze Village by Corithas
+% 3. Take the direction of Starbreeze Village, be accosted for the dreamcatcher
+% 4. Fill the phial at the moonwell, realize the village is overrun by furbolgs
+% 5. Rummage a few buildings, start from the left, find the dreamcatcher in the second building
+% 6. Go back to Dolanaar, Corithas, then the dreamcatcher guy is unhappy ....
+% 7. Take a nap because "what, I need to go there again ? fuck"
+% 7. Athridas after the nap
+% Starbreeze Village
+% Quickly give the jewel then run to Athridas
