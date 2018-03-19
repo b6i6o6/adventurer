@@ -100,7 +100,7 @@
     }
     \fancyfoot[LE,RO]{\thepage}
     \fancyfoot[RE,LO]{
-        \includegraphics[scale=0.4,valign=m]{Icons/Hearthstone.png} 57
+        \includegraphics[scale=0.4,valign=m]{Icons/Hearthstone.png} \pageref{\currenthearthstone}
     }
     \addcontentsline{toc}{chapter}{#1}
     \import{Zones/#1/}{#1}
@@ -138,11 +138,15 @@
     \end{faction}
 }
 \newcommand {\miss}[1]{#1}  % Used to indicate what is missing from wowpedia
+\newcommand {\currenthearthstone}{}
+\newcommand {\hearthstone}[1] {
+    \renewcommand {\currenthearthstone} {#1}
+}
 
-\renewcommand{\contentsname}{Flight Master}
+\renewcommand{\contentsname}{Flight Master\label{Flight Master}}
 
 \addtocontents{toc}{
-    Eager to travel fast around the world, you make your way to the nearest Flight Master. He eyes you warily until you hand him a small pouch of coins. He suddenly looks way more willing to discuss business with you.
+    Eager to travel fast around the world, you make your way to the Flight Master. He eyes you warily until you hand him a small pouch of coins. He suddenly looks way more willing to discuss business with you.
 
     Flight Master says: Where do you want to go, \class ?\par
 }
@@ -155,6 +159,8 @@
 \maketitle
 
 % \part{Cataclysm (1-60)}
+
+\import{Zones/Hearthstone/}{Hearthstone}
 
 \zone{Teldrassil}
 
