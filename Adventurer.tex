@@ -1,11 +1,13 @@
 \documentclass{book}                    % For two-sided book page style
-\usepackage[a5paper]{geometry}          % For a5 paper size
+\usepackage[a5paper, marginparwidth=0.5in]{geometry}          % For a5 paper size
 \usepackage{palatino}                   % For Palatino fonts
 \usepackage{suffix}                     % For starred commands (tlmgr bigfoot)
 \usepackage{pdflscape}                  % For landscape map pages
 \usepackage{import}                     % For importing nested folders
 \usepackage{fancyhdr}                   % For complicated headers and footers
 \usepackage{marginnote}                 % For faction sidenotes
+\usepackage{etoolbox}
+\usepackage{moresize}
 \usepackage[export]{adjustbox}
 % \geometry{bindingoffset=1.5cm}
 
@@ -43,7 +45,9 @@
     \input|"./cache.sh #1 | perl extract_data.pl '#3' \character"
 }
 \newcommand {\quest}[1] {
-    \custom[Quest]{#1}{Description}
+    \begin{faction}{Quest}{0.5}{#1}
+        \custom[Quest]{#1}{Description}
+    \end{faction}
 }
 \newcommand {\questA}[1] {
     \quest{#1 (Alliance)}
@@ -122,18 +126,27 @@
 \newcommand {\goto}[2][] {
     \indent$\hookrightarrow$ #1 \includegraphics[scale=0.4,valign=m]{Icons/Book.png} \textit{\pageref{#2}}
 }
-\newenvironment{faction}[1]{
+% Hack to have margin notes always on the left
+\makeatletter
+\patchcmd{\@mn@margintest}{\@tempswafalse}{\@tempswatrue}{}{}
+\patchcmd{\@mn@margintest}{\@tempswafalse}{\@tempswatrue}{}{}
+\reversemarginpar
+\makeatother
+\newenvironment{faction}[3]{
     \leavevmode\marginnote{
-        \includegraphics[scale=0.7]{Icons/#1.png}
+        \includegraphics[scale=#2]{Icons/#1.png}
+        \newline
+        \centering\ssmall{#3}
     }\ignorespaces
+    % \marginpar{\includegraphics[scale=#2]{Icons/#1.png}}
 }{}
 \newcommand {\alliance}[1]{
-    \begin{faction}{Alliance}
+    \begin{faction}{Alliance}{0.7}{}
         #1
     \end{faction}
 }
 \newcommand {\horde}[1]{
-    \begin{faction}{Horde}
+    \begin{faction}{Horde}{0.7}{}
         #1
     \end{faction}
 }
