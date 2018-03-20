@@ -5,11 +5,16 @@
 \usepackage{pdflscape}                  % For landscape map pages
 \usepackage{import}                     % For importing nested folders
 \usepackage{fancyhdr}                   % For complicated headers and footers
-\usepackage{marginnote}                 % For faction sidenotes
+% \usepackage{marginnote}                 % For faction sidenotes
 \usepackage{etoolbox}
 \usepackage{moresize}
+\usepackage{sidenotes}
+\usepackage{caption}
 \usepackage[export]{adjustbox}
 % \geometry{bindingoffset=1.5cm}
+
+% Make captions closer to figures for sidenotes quest markers
+\setlength{\abovecaptionskip}{0pt}
 
 % Clear default headers and footers
 \pagestyle{fancy}
@@ -31,7 +36,7 @@
     \fancyfoot{}
     %https://tex.stackexchange.com/questions/155925/how-to-get-included-pdf-pages-adjusted-to-left-and-right-pages-in-a-book
     \mbox{}\par\vspace{6.8cm}
-    \hspace*{-.25\marginparwidth}\makebox[\textwidth][c]{\raisebox{-.5\height}[0pt][0pt]{\includegraphics[height=0.6\paperheight,angle=90]{Maps/#1.jpg}}}\par\label{#1}
+    \hspace*{-.4in}\makebox[\textwidth][c]{\raisebox{-.5\height}[0pt][0pt]{\includegraphics[height=0.6\paperheight,angle=90]{Maps/#1.jpg}}}\par\label{#1}
     \vfill\mbox{}
 }
 \newcommand {\prepareQuestURI}[1] {
@@ -133,12 +138,15 @@
 \reversemarginpar
 \makeatother
 \newenvironment{faction}[3]{
-    \leavevmode\marginnote{
+    % \leavevmode\marginnote{
+    %     \centering\includegraphics[scale=#2]{Icons/#1.png}
+    %     \centering\ssmall{#3}
+    % }\ignorespaces
+    \begin{marginfigure}[0.5cm]%
+        \centering
         \includegraphics[scale=#2]{Icons/#1.png}
-        \newline
-        \centering\ssmall{#3}
-    }\ignorespaces
-    % \marginpar{\includegraphics[scale=#2]{Icons/#1.png}}
+        \caption*{\centering\ssmall{#3}}%
+    \end{marginfigure}%
 }{}
 \newcommand {\alliance}[1]{
     \begin{faction}{Alliance}{0.7}{}
