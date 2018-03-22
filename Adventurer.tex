@@ -50,9 +50,8 @@
     \input|"./cache.sh #1 | perl extract_data.pl '#3' \character"
 }
 \newcommand {\quest}[1] {
-    \begin{faction}{Quest}{0.5}{#1}
-        \custom[Quest]{#1}{Description}
-    \end{faction}
+    \marker{Quest}{0.5}{#1}
+    \custom[Quest]{#1}{Description}
 }
 \newcommand {\questA}[1] {
     \quest{#1 (Alliance)}
@@ -64,6 +63,7 @@
     \quest{#1}
 }
 \newcommand {\complete}[1] {
+    \marker{QuestComplete}{0.5}{#1}
     \custom[Quest]{#1}{Completion}
 }
 \newcommand {\completeA}[1] {
@@ -80,6 +80,9 @@
 }
 \newcommand {\progressH}[1] {
     \progress{#1 (Horde)}
+}
+\newcommand {\rare}[1]{%
+    \leavevmode\marker[0]{Rare}{0.5}{#1}
 }
 \WithSuffix\newcommand\progress*[1] {
     % TODO: Improve the perl script to *not* do 'npc says' in this case
@@ -137,26 +140,22 @@
 \patchcmd{\@mn@margintest}{\@tempswafalse}{\@tempswatrue}{}{}
 \reversemarginpar
 \makeatother
-\newenvironment{faction}[3]{
+\newcommand {\marker}[4][0.5]{%
     % \leavevmode\marginnote{
     %     \centering\includegraphics[scale=#2]{Icons/#1.png}
     %     \centering\ssmall{#3}
     % }\ignorespaces
-    \begin{marginfigure}[0.5cm]%
+    \begin{marginfigure}[#1cm]%
         \centering
-        \includegraphics[scale=#2]{Icons/#1.png}
-        \caption*{\centering\ssmall{#3}}%
+        \includegraphics[scale=#3]{Icons/#2.png}
+        \caption*{\centering\ssmall{#4}}%
     \end{marginfigure}%
-}{}
+}
 \newcommand {\alliance}[1]{
-    \begin{faction}{Alliance}{0.7}{}
-        #1
-    \end{faction}
+    \marker{Alliance}{0.7}{}#1
 }
 \newcommand {\horde}[1]{
-    \begin{faction}{Horde}{0.7}{}
-        #1
-    \end{faction}
+    \marker{Horde}{0.7}{}#1
 }
 \newcommand {\miss}[1]{#1}  % Used to indicate what is missing from wowpedia
 \newcommand {\currenthearthstone}{}
