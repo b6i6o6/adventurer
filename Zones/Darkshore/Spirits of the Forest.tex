@@ -40,10 +40,6 @@ As you exit the inn, Ranger Glynda addresses you.
 
 Following the advice, you take the bridge out of Lor'danel and approach the Nightsaber Rider at the other end of it.
 
-% TODO: the rider has multiple quotes !
-% \miss{Nightsaber Rider says: I'm glad to see that you're well.}
-% \miss{Nightsaber Rider says: Looking for a ride?}
-
 \miss{You say: I'd like to travel to Bashal'Aran.}
 
 She puts you on one of her nightsabers and instructs it to transport you to Bashal'Aran. The nightsaber follows the road south of Lor'danel until it approaches a ruined area. By the ramp into the ruins are two night elves. One one Nightsaber Rider and another who addresses you as you give the nightsabers reins to the rider.
@@ -70,7 +66,7 @@ From the top of the crack where you are standing, you spot a white bear on the f
 
 \miss{Keeper Karithus says: Welcome, child.}
 
-\end{A Lost Companion}
+\complete{A Lost Companion}
 
 \start{Unsavory Remedies}
 
@@ -115,11 +111,49 @@ You hand the materials to Karithus.
 
 \complete{Ritual Materials}
 
-% TODO
-% TODO: Mixes the incense, then you need to choose a spirit ! (Darkshore2 24:00)
-% TODO
+Karithus mixes the material and puts a bowl with the resulting incense on the ground, between you, him, and Grimclaw.
 
-You give the nightsaber back to the rider in Lor'danel and run to Ranger Glynda to tell her that the final flame of Bashal'Aran has been extinguised.
+\start{The Ritual Bond}
+
+\progress{The Ritual Bond}
+
+You \miss{breathe in the smoke to entice visions of the great animal spirits.}
+
+You are \miss{immersed in a deep trance}. The surrounding woods appear blurry, and you can't see Grimclaw or Seraphine anymore, only you and Karithus remain. Looking around you, you realize the woods are empty of all creatures, save three animal spirits.
+
+You approach the Great Thistle Bear Spirit.
+
+\start{Spirit of the Thistle Bear}
+
+You decide to hear all the spirits before making your choice. You bow at the bear, then approach the Great Moonstalker Spirit.
+
+\start{Spirit of the Moonstalker}
+
+You nod to the moonstalker and approach the Great Stag Spirit.
+
+\start{Spirit of the Stag}
+
+You choose one of the three animal spirits to receive its blessing then return to Karithus.
+
+\complete{The Ritual Bond}
+
+As Karithus proceeds to the Ritual Bond and you are \miss{undergoing the binding}, you can feel the Grovekeeper's Trance lifting from your mind as Karithus and Seraphine channels the powers of nature into you.
+
+\miss{Keeper Karithus says: It is done. The spirit is bound with you and you will carry it with you anytime you are in Darkshore. May you serve nature well.}
+
+\ask{Which animal spirit did you choose ?}
+\goto[Blessing of the Thistle Bear]{} You are blessed by the Great Thistle Bear Spirit. Its resilience makes you stronger, and you are regarded in a friendly manner by the bears of Darkshore.
+\goto[Blessing of the Moonstalker]{} You are blessed by the Great Moonstalker Spirit. Its ferocity makes you fight better, and you are regarded in a friendly manner by the moonwalkers of Darkshore.
+\goto[Blessing of the Stag]{} You are blessed by the Great Stag Spirit. Its swiftness makes you move faster, and you are regarded in a friendly manner by the stag of Darkshore.
+
+\start{Grimclaw's Return}
+
+In order to race after Grimclaw, you return near the ruins of Bashal'Aran to take a nightsaber ride back to Lor'danel.
+
+\miss{Nightsaber Rider says: I'm glad to see that you're well.}
+\miss{Nightsaber Rider says: Looking for a ride?}
+
+You mount the nightsaber as it quickly runs to Lor'danel. Once in town, you give the nightsaber back to the rider in Lor'danel and run to Ranger Glynda to tell her that the final flame of Bashal'Aran has been extinguised.
 
 \complete{The Final Flame of Bashal'Aran}
 
@@ -128,5 +162,114 @@ You make your way up the Inn to Cerellean and give him Anaya's Pendant.
 \progress{A Love Eternal}
 \complete{A Love Eternal}
 
-% TODO: Continues on with Darkshore2
-% For the spirit choice, I can just write a small sentence like "you sense you are more agile" or "you sense you are more resistant, like if the spirit of the bear was protecting you somehow" and the bears/cats/stags of Darkshore now regard you in a friendly manner. Just simple sentences, no page change.
+Near Cerellean is Grimclaw, despereately trying to wake Volcor from his bed. A priestess walks down from the upper level of the inn.
+
+\complete{Grimclaw's Return}
+
+She walks back upstairs as you exit the inn. A dwarf waves at you from below a night elf hut.
+
+\start{An Ocean Not So Deep}
+
+You swim into the sea in direction of the wreckage until you reach a small island with a gnome on it, this must be Gary. He is standing near a small robot and a control console.
+
+\progress{An Ocean Not So Deep}
+
+You approach the decoy boat control console and start controlling the robot which passes for foolhardy adventurer to the murlocs. The robot walks among the murlocs and attract some of them, starting to attack it.
+
+You activate the robot's Depth Charge Countdown Pulse.
+
+\miss{Foolhardy Adventurer says: Murloc pests, I have come to steal your treasure! Attempt to stop me! Quickly!}
+
+More murlocs from all around the wreckage rush towards the Foolhardy Adventurer decoy robot.
+
+\miss{Foolhardy Adventurer says:  Detonation imminent.}
+
+The decoy robot exploses, killing all the murlocs.
+
+You make your way back to Lor'danel and the dwarf.
+
+\miss{Gorbold Steelhand says: A treasure hunter's life is a treacherous one. Don't be foolin' yerself.}
+
+\complete{An Ocean Not So Deep}
+
+Ranger Glynda comes at you.
+
+\start{The Shatterspear Invaders}
+
+\miss{Ranger Glynda Nal'Shea says: Don't forget to check near the bridges southeast of town for a ride up to our forward post.}
+
+You exit the town by the huge bridge across the flooded cracks in the ground and meet with the nightsaber rider
+
+\miss{Nightsaber Rider says: Looking for a ride?}
+
+\miss{You say: I'd like to travel to the ruins of Mathystra.}
+
+She puts you on a nightsaber which starts running to the east. You pass near the tower of Althalaxx. It is in ruins and the trees around it are on fire. Along the way, you notice multiple Shatterspear Raiders corpses.
+
+You reach the Ruins of Mathystra, where a small force of sentinels have set up camp. A few of them are inspecting a troll body. As you approach them, their leader turns to you
+
+\complete{The Shatterspear Invaders}
+
+\start{Shatterspear Laborers}
+
+\start{Remnants of the Highborne}
+
+You venture into the ruins, searching for relics. You kill the Shatterspear Laborers who are digging the ruins and save some Highborne Relics from the trolls. Further into the ruins, you are attacked by one of the Shatterpsear Overseers.
+
+\miss{Shatterspear Overseer says: I be movin' to the groove; ya be movin' to the grave}
+
+As you rummage through the body of the overseer, you find some papers.
+
+\start{Reason To Worry}
+
+You return back to the Sentinels' camp.
+
+\progress{Reason To Worry}
+
+You hand the Overseer's Orders to the Lieutenant.
+
+\complete{Reason To Worry}
+
+\complete{Shatterspear Laborers}
+
+\progress{Remnants of the Highborne}
+
+You give the Highborne Relics to Balthule.
+
+\complete{Remnants of the Highborne}
+
+\start{Swift Response}
+
+\start{Denying Manpower}
+
+\start{War Supplies}
+
+You venture into the ruins again in direction of the Shatterspear trolls camp. As you approach the camp, you are attacked by a Tauren who seem to be guarding the entrance. You are attacked by more Horde Enforcers on your way into the camp but manage to defeat them.
+
+Inside the camp you find Shatterspear Armaments stored inside crates marked with the symbol of the Horde. You use the Sentinel Torch to burn the crates.
+
+The fire from the burning alerts the Shatterspear Mystics and other Horde Enforcers also run to your position. You manage to escape being slaughtered by hiding nearby, at the western end of the Shatterspear camp, where you realize the trolls even built some docks for ships.
+
+Once the rumble is over, you make your way to the back of the camp where you notice a night elf body lying on the ground. You kill the Shatterspear Shamans along the way and kneel near the body.
+
+\progress{Swift Response}
+
+\complete{Swift Response}
+
+\start{One Bitter Wish}
+
+You engage Rit'ko, the Shatterspear Torturer.
+
+\miss{Rit'ko says: A new victim! Me was almost don wit dis one anyway.}
+
+Killing the torturer, you find a key on his dead body. You use the Shatterspear Torturere's Cage Key on a nearby cage.
+
+\start{Timely Arrival}
+
+You make your way back to the docks, killing the Enforcers and Shamans who have just found the bodies of their fallen comrades on the way and run to the end of the docks.
+
+\miss{Sentinel Aynasha says: Thanks for getting me out of there. I should be able to swim back from here, but before I go, one quick thing... I was afforded a brief chance to attack their leader, and he was protected by some kind of magic. Make sure Morra hears of this before leading any kind of attack. Farewell newcomer. May Elune's blessing be with you.}
+
+You take the time to burn a few more Shatterspear Armaments crates then jump into the water before the fire bring in more reinforcements again.
+
+You swim back to the nearest shore, where you are attacked by Greymist Tidehunter murlocs. They are pale grey and purple in color, but they seem to be lead by a \rare{Flagglemurk the Cruel}smaller murloc which actually is a colorful one. Dispatching the murlocs, you make your way back to the Ruins of Mathystra.

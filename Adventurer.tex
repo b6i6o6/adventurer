@@ -10,6 +10,7 @@
 \usepackage{moresize}
 \usepackage{sidenotes}
 \usepackage{caption}
+\usepackage[space]{grffile}
 \usepackage[export]{adjustbox}
 % \geometry{bindingoffset=1.5cm}
 
@@ -115,7 +116,7 @@
         \includegraphics[scale=0.4,valign=m]{Icons/Hearthstone.png} \pageref{\currenthearthstone}
     }
     \addcontentsline{toc}{chapter}{#1}
-    \import{Zones/#1/}{#1}
+    \import{"Zones/#1/"}{"#1"}
 }
 \newcommand {\breadcrumb}[1] {
     \fancyhead[R]{\sc #1}
@@ -183,6 +184,10 @@
 \zone{Teldrassil}
 
 \zone{Darkshore}
+
+\zone{Southern Barrens}
+
+\zone{Tanaris}
 
 \zone{Silithus}
 
