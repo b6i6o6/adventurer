@@ -12,6 +12,8 @@
 \usepackage{caption}
 \usepackage[space]{grffile}
 \usepackage[export]{adjustbox}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 % \geometry{bindingoffset=1.5cm}
 
 % Make captions closer to figures for sidenotes quest markers
@@ -32,6 +34,8 @@
 \newcommand {\race}{adventurer}
 \newcommand {\class}{adventurer}
 \newcommand {\character}{Adventurer}
+\newcommand {\gender}{male}
+\newcommand {\localelang}{enUS}
 \newcommand {\map}[1]{
     \fancyhead{}
     \fancyfoot{}
@@ -105,6 +109,27 @@
     % TODO: Make an index of flowers
     #1
 }
+\newcommand {\fetch}[7] {%
+    \input|"perl fetch_resource.pl #1 #2 #3 #4 #5 #6 #7"
+}
+\newcommand {\npc}[1] {%
+    \fetch{npc}{#1}{\localelang}{\character}{\race}{\class}{\gender}%
+}
+\newcommand {\text}[1] {%
+    \fetch{broadcast_text}{#1}{\localelang}{\character}{\race}{\class}{\gender}%
+}
+\newcommand {\speech}[3] {
+    \par\npc{#1}#2: \text{#3}
+}
+\newcommand {\says}[2] {
+    \speech{#1}{says}{#2}
+}
+\newcommand {\whispers}[2] {
+    \speech{#1}{whispers}{#2}
+}
+\newcommand {\yells}[2] {
+    \speech{#1}{yells}{#2}
+}
 \newcommand*\cleartoleftpage{
   \clearpage
   \ifodd\value{page}\hbox{}\newpage\fi
@@ -159,10 +184,10 @@
     \end{marginfigure}%
 }
 \newcommand {\alliance}[1]{
-    \marker{Alliance}{0.7}{}#1
+    \marker{Alliance}{0.7}{}#1\newline
 }
 \newcommand {\horde}[1]{
-    \marker{Horde}{0.7}{}#1
+    \marker{Horde}{0.7}{}#1\newline
 }
 \newcommand {\miss}[1]{#1}  % Used to indicate what is missing from wowpedia
 \newcommand {\currenthearthstone}{}
