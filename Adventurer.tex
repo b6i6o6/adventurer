@@ -109,26 +109,43 @@
     % TODO: Make an index of flowers
     #1
 }
-\newcommand {\fetch}[7] {%
+\newcommand {\fetchresource}[7] {%
     \input|"perl fetch_resource.pl #1 #2 #3 #4 #5 #6 #7"
 }
+\newcommand {\fetch}[2] {%
+    \fetchresource{#1}{#2}{\localelang}{\character}{\race}{\class}{\gender}%
+}
 \newcommand {\npc}[1] {%
-    \fetch{npc}{#1}{\localelang}{\character}{\race}{\class}{\gender}%
+    \fetch{npc}{#1}
 }
 \newcommand {\text}[1] {%
-    \fetch{broadcast_text}{#1}{\localelang}{\character}{\race}{\class}{\gender}%
+    \fetch{broadcast_text}{#1}%
 }
-\newcommand {\speech}[3] {
-    \par\npc{#1}#2: \text{#3}
+\newcommand {\speech}[3] {%
+    \par\npc{#1}#2: \text{#3}%
 }
-\newcommand {\says}[2] {
-    \speech{#1}{says}{#2}
+\newcommand{\you}[1] {
+    You say: \text{#1}
+}
+\newcommand {\says}[2] {%
+    \speech{#1}{says}{#2}%
 }
 \newcommand {\whispers}[2] {
     \speech{#1}{whispers}{#2}
 }
 \newcommand {\yells}[2] {
     \speech{#1}{yells}{#2}
+}
+\newcommand {\startID}[1] {
+    \marker{Quest}{0.5}{\fetch{quest_name}{#1}}
+    \fetch{quest_starter}{#1} says: \fetch{quest_description}{#1}
+}
+\newcommand {\progressID}[1] {
+    \fetch{quest_ender}{#1} says: \fetch{quest_progress}{#1}
+}
+\newcommand {\completeID}[1] {
+    \marker{QuestComplete}{0.5}{\fetch{quest_name}{#1}}
+    \fetch{quest_ender}{#1} says: \fetch{quest_completion}{#1}
 }
 \newcommand*\cleartoleftpage{
   \clearpage
