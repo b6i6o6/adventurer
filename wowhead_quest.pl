@@ -2,13 +2,13 @@ use strict;
 use warnings;
 use HTML::TreeBuilder::XPath;
 
-my ( $quest_id, $section, $name, $locale, $race, $class ) = @ARGV;
+my ( $id, $section, $locale, $name, $race, $class ) = @ARGV;
 
-if ( !$name ) {
-    $name = 'Adventurer';
-}
 if ( !$locale ) {
     $locale = 'enUS';
+}
+if ( !$name ) {
+    $name = 'Adventurer';
 }
 if ( !$race ) {
     $race = 'adventurer';
@@ -43,14 +43,50 @@ if ( $locale eq 'frFR' ) {
     $prefix = 'cn';
 }
 
-my $url = "http://$prefix.wowhead.com/quest=$quest_id";
-my $root = HTML::TreeBuilder::XPath->new_from_url($url);
+my $folder_name;
+if ( $section eq 'progress' ) {
+    $folder_name = 'quest_progress';
 
-my $text = $root->findnodes("//*[contains(\@id, \'$section\')]");
+} elsif ( $section eq 'completion' ) {
+    $folder_name = 'quest_completion';
 
-$text =~ s/\.(\w)/\. $1/g;    # <br> do not generate spaces
-$text =~ s/<race>/$race/g;
-$text =~ s/<class>/$class/g;
-$text =~ s/<name>/$name/g;
+} else {
+    die "Unrecognized section, options are \"progress\" and \"completion\"";
+}
 
-print "$text\n";
+my $cache_folder = "./Cache/$locale/$folder_name";
+my $filename = "$cache_folder/$id";
+system("mkdir -p $cache_folder") unless(-d $cache_folder);
+
+my $file;
+my $text;
+
+if ( -e $filename ) {
+    open($file, '<', $filename) or die "Could not open file '$filename' $!";
+    $text = <$file>;
+
+} else {
+    my $url = "http://$prefix.wowhead.com/quest=$id";
+    my $root = HTML::TreeBuilder::XPath->new_from_url($url);
+
+    $text = $root->findnodes("//*[contains(\@id, \'$section\')]");
+
+    $text =~ s/([^\w' ])(\w)/$1 $2/g;    # <br> do not generate spaces
+
+    if ( "$text" eq '' ) {
+        die "Nothing was found for $section $id";
+    }
+
+    open($file, '>', $filename) or die "Could not open file '$filename' $!";
+    print $file "$text";
+
+}
+
+close $file;
+
+
+$text =~ s/$race_tag/$race/g;
+$text =~ s/$class_tag/$class/g;
+$text =~ s/$name_tag/$name/g;
+
+print "$text";

@@ -140,12 +140,18 @@
     \marker{Quest}{0.5}{\fetch{quest_name}{#1}}
     \fetch{quest_starter}{#1} says: \fetch{quest_description}{#1}
 }
+\newcommand {\wowheadquest}[7] {%
+    \input|"perl wowhead_quest.pl #1 #2 #3 #4 #5 #6 #7"
+}
+\newcommand {\fetchwowhead}[2] {%
+    \wowheadquest{#1}{#2}{\localelang}{\character}{\race}{\class}{\gender}%
+}
 \newcommand {\progressID}[1] {
-    \fetch{quest_ender}{#1} says: \fetch{quest_progress}{#1}
+    \fetch{quest_ender}{#1} says: \fetchwowhead{#1}{progress}
 }
 \newcommand {\completeID}[1] {
     \marker{QuestComplete}{0.5}{\fetch{quest_name}{#1}}
-    \fetch{quest_ender}{#1} says: \fetch{quest_completion}{#1}
+    \fetch{quest_ender}{#1} says: \fetchwowhead{#1}{completion}
 }
 \newcommand*\cleartoleftpage{
   \clearpage
@@ -201,10 +207,10 @@
     \end{marginfigure}%
 }
 \newcommand {\alliance}[1]{
-    \marker{Alliance}{0.7}{}#1\newline
+    \marker{Alliance}{0.7}{}#1
 }
 \newcommand {\horde}[1]{
-    \marker{Horde}{0.7}{}#1\newline
+    \marker{Horde}{0.7}{}#1
 }
 \newcommand {\miss}[1]{#1}  % Used to indicate what is missing from wowpedia
 \newcommand {\currenthearthstone}{}

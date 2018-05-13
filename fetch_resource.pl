@@ -217,9 +217,9 @@ $text =~ s/\$r/$race/gi;
 $text =~ s/\$c/$class/gi;
 $text =~ s/\$n/$name/gi;
 if ( $gender eq 'male' ) {
-    $text =~ s/\$g(\w*):(\w*)(?::\w?)?;/$1/gi;
+    $text =~ s/\$g([\w']*):([\w']*)(?::[\w']?)?;/$1/gi;
 } else {
-    $text =~ s/\$g(\w*):(\w*)(?::\w?)?;/$2/gi;
+    $text =~ s/\$g([\w']*):([\w']*)(?::[\w']?)?;/$2/gi;
 }
 
 print "$text";
