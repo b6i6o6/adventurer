@@ -141,7 +141,7 @@
     \fetch{quest_starter}{#1} says: \fetch{quest_description}{#1}
 }
 \newcommand {\wowheadquest}[7] {%
-    \input|"perl wowhead_quest.pl #1 #2 #3 #4 #5 #6 #7"
+    \input|"perl wowhead_quest.pl #1 #2 #3 #4 #5 #6 #7"\unskip
 }
 \newcommand {\fetchwowhead}[2] {%
     \wowheadquest{#1}{#2}{\localelang}{\character}{\race}{\class}{\gender}%
@@ -152,6 +152,12 @@
 \newcommand {\completeID}[1] {
     \marker{QuestComplete}{0.5}{\fetch{quest_name}{#1}}
     \fetch{quest_ender}{#1} says: \fetchwowhead{#1}{completion}
+}
+\newcommand {\itemflavor}[1] {%
+    \fetchwowhead{#1}{itemflavor}%
+}
+\newcommand {\itemuse}[1] {%
+    \fetchwowhead{#1}{itemuse}%
 }
 \newcommand*\cleartoleftpage{
   \clearpage

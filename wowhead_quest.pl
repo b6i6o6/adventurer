@@ -50,8 +50,14 @@ if ( $section eq 'progress' ) {
 } elsif ( $section eq 'completion' ) {
     $folder_name = 'quest_completion';
 
+} elsif ( $section eq 'itemflavor') {
+    $folder_name = 'itemflavor';
+
+} elsif ( $section eq 'itemuse') {
+    $folder_name = 'itemuse';
+
 } else {
-    die "Unrecognized section, options are \"progress\" and \"completion\"";
+    die "Unrecognized section $section";
 }
 
 my $cache_folder = "./Cache/$locale/$folder_name";
@@ -66,12 +72,31 @@ if ( -e $filename ) {
     $text = <$file>;
 
 } else {
-    my $url = "http://$prefix.wowhead.com/quest=$id";
+    my $type;
+    if ( $section eq 'quest' ) {
+        $type = 'quest';
+    } else {
+        $type = 'item';
+    }
+    my $url = "http://$prefix.wowhead.com/$type=$id";
     my $root = HTML::TreeBuilder::XPath->new_from_url($url);
 
-    $text = $root->findnodes("//*[contains(\@id, \'$section\')]");
+    if ( $type eq 'quest' ) {
+        $text = $root->findnodes("//*[contains(\@id, \'$section\')]");
+        $text =~ s/([^\w' ])(\w)/$1 $2/g; # <br> do not generate spaces
 
-    $text =~ s/([^\w' ])(\w)/$1 $2/g;    # <br> do not generate spaces
+    } elsif ( $type eq 'item' ) {
+        if ( $section eq 'itemflavor' ) {
+            $text = $root->findnodes("//*[\@class='q']");
+
+        } elsif ( $section eq 'itemuse' ) {
+            $text = $root->findnodes("//a[\@class='q2']");
+        }
+
+        $text =~ s/^"|"$//g;
+        $text =~ s/^(\w)/\l$1/g;
+        $text =~ s/.$//g;
+    }
 
     if ( "$text" eq '' ) {
         die "Nothing was found for $section $id";
