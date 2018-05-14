@@ -2,7 +2,7 @@ use strict;
 use warnings;
 use HTML::TreeBuilder::XPath;
 
-my ( $id, $section, $locale, $name, $race, $class ) = @ARGV;
+my ( $id, $resource, $locale, $name, $race, $class ) = @ARGV;
 
 if ( !$locale ) {
     $locale = 'enUS';
@@ -43,24 +43,29 @@ if ( $locale eq 'frFR' ) {
     $prefix = 'cn';
 }
 
-my $folder_name;
-if ( $section eq 'progress' ) {
-    $folder_name = 'quest_progress';
+my $type;
+my $section;
+if ( $resource eq 'quest_progress' ) {
+    $type = 'quest';
+    $section = 'progress';
 
-} elsif ( $section eq 'completion' ) {
-    $folder_name = 'quest_completion';
+} elsif ( $resource eq 'quest_completion' ) {
+    $type = 'quest';
+    $section = 'completion';
 
-} elsif ( $section eq 'itemflavor') {
-    $folder_name = 'itemflavor';
+} elsif ( $resource eq 'itemflavor') {
+    $type = 'item';
+    $section = 'itemflavor';
 
-} elsif ( $section eq 'itemuse') {
-    $folder_name = 'itemuse';
+} elsif ( $resource eq 'itemuse') {
+    $type = 'item';
+    $section = 'itemuse';
 
 } else {
     die "Unrecognized section $section";
 }
 
-my $cache_folder = "./Cache/$locale/$folder_name";
+my $cache_folder = "./Cache/$locale/$resource";
 my $filename = "$cache_folder/$id";
 system("mkdir -p $cache_folder") unless(-d $cache_folder);
 
@@ -72,12 +77,6 @@ if ( -e $filename ) {
     $text = <$file>;
 
 } else {
-    my $type;
-    if ( $section eq 'quest' ) {
-        $type = 'quest';
-    } else {
-        $type = 'item';
-    }
     my $url = "http://$prefix.wowhead.com/$type=$id";
     my $root = HTML::TreeBuilder::XPath->new_from_url($url);
 
@@ -91,8 +90,11 @@ if ( -e $filename ) {
 
         } elsif ( $section eq 'itemuse' ) {
             $text = $root->findnodes("//a[\@class='q2']");
+        } else {
+            die "Wrong section $section for type $type";
         }
 
+        # Pre-substitutions
         $text =~ s/^"|"$//g;
         $text =~ s/^(\w)/\l$1/g;
         $text =~ s/.$//g;
@@ -109,9 +111,17 @@ if ( -e $filename ) {
 
 close $file;
 
+my $character_folder = "./Cache/$name/$resource";
+system("mkdir -p $character_folder") unless(-d $character_folder);
+my $character_filename = "$character_folder/$id";
 
+# Post-substitutions
 $text =~ s/$race_tag/$race/g;
 $text =~ s/$class_tag/$class/g;
 $text =~ s/$name_tag/$name/g;
+
+open(my $character_file, '>', $character_filename) or die "Could not open file '$character_filename' $!";
+print $character_file "$text";
+close $file;
 
 print "$text";

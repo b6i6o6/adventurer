@@ -113,7 +113,10 @@
     \input|"perl fetch_resource.pl #1 #2 #3 #4 #5 #6 #7"
 }
 \newcommand {\fetch}[2] {%
-    \fetchresource{#1}{#2}{\localelang}{\character}{\race}{\class}{\gender}%
+    \IfFileExists{Cache/\character/#1/#2}{}{%
+        \fetchresource{#1}{#2}{\localelang}{\character}{\race}{\class}{\gender}%
+    }%
+    \input{Cache/\character/#1/#2}\unskip
 }
 \newcommand {\npc}[1] {%
     \fetch{npc}{#1}
@@ -144,14 +147,17 @@
     \input|"perl wowhead_quest.pl #1 #2 #3 #4 #5 #6 #7"\unskip
 }
 \newcommand {\fetchwowhead}[2] {%
-    \wowheadquest{#1}{#2}{\localelang}{\character}{\race}{\class}{\gender}%
+    \IfFileExists{Cache/\character/#2/#1}{}{%
+        \wowheadquest{#1}{#2}{\localelang}{\character}{\race}{\class}{\gender}%
+    }%
+    \input{Cache/\character/#2/#1}\unskip
 }
 \newcommand {\progressID}[1] {
-    \fetch{quest_ender}{#1} says: \fetchwowhead{#1}{progress}
+    \fetch{quest_ender}{#1} says: \fetchwowhead{#1}{quest_progress}
 }
 \newcommand {\completeID}[1] {
     \marker{QuestComplete}{0.5}{\fetch{quest_name}{#1}}
-    \fetch{quest_ender}{#1} says: \fetchwowhead{#1}{completion}
+    \fetch{quest_ender}{#1} says: \fetchwowhead{#1}{quest_completion}
 }
 \newcommand {\itemflavor}[1] {%
     \fetchwowhead{#1}{itemflavor}%
