@@ -18,9 +18,9 @@ if ( !$class ) {
 }
 
 my $prefix = 'www';
-my $name_tag = '<name>';
-my $race_tag = '<race>';
-my $class_tag = '<class>';
+my $name_tag = '< *name *>';
+my $race_tag = '< *race *>';
+my $class_tag = '< *class *>';
 
 if ( $locale eq 'frFR' ) {
     $prefix = 'fr';
