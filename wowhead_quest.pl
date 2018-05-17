@@ -2,6 +2,8 @@ use strict;
 use warnings;
 use HTML::TreeBuilder::XPath;
 
+print "$0 @ARGV\n";
+
 my ( $id, $resource, $locale, $name, $race, $class ) = @ARGV;
 
 if ( !$locale ) {
@@ -73,7 +75,7 @@ my $file;
 my $text;
 
 if ( -e $filename ) {
-    open($file, '<', $filename) or die "Could not open file '$filename' $!";
+    open($file, '<:encoding(UTF-8)', $filename) or die "Could not open file '$filename' $!";
     $text = <$file>;
 
 } else {
@@ -94,6 +96,8 @@ if ( -e $filename ) {
             die "Wrong section $section for type $type";
         }
 
+        print "$text\n";
+
         # Pre-substitutions
         $text =~ s/^"|"$//g;
         $text =~ s/^(\w)/\l$1/g;
@@ -104,7 +108,7 @@ if ( -e $filename ) {
         die "Nothing was found for $section $id";
     }
 
-    open($file, '>', $filename) or die "Could not open file '$filename' $!";
+    open($file, '>:encoding(UTF-8)', $filename) or die "Could not open file '$filename' $!";
     print $file "$text";
 
 }
@@ -116,11 +120,13 @@ system("mkdir -p $character_folder") unless(-d $character_folder);
 my $character_filename = "$character_folder/$id";
 
 # Post-substitutions
+$text =~ s/\xA0//g;  # &nbsp;
+$text =~ s/ +/ /g;
 $text =~ s/$race_tag/$race/g;
 $text =~ s/$class_tag/$class/g;
 $text =~ s/$name_tag/$name/g;
 
-open(my $character_file, '>', $character_filename) or die "Could not open file '$character_filename' $!";
+open(my $character_file, '>:encoding(utf-8)', $character_filename) or die "Could not open file '$character_filename' $!";
 print $character_file "$text";
 close $file;
 

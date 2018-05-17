@@ -1,6 +1,9 @@
 #!/usr/bin/env perl
 use strict;
 use warnings;
+
+print "$0 @ARGV\n";
+
 my ( $resource, $id, $locale, $name, $race, $class, $gender ) = @ARGV;
 
 if ( !$resource or !$id ) {
@@ -205,7 +208,7 @@ my $file;
 my $text;
 
 if ( -e $filename ) {
-    open($file, '<', $filename) or die "Could not open file '$filename' $!";
+    open($file, '<:encoding(utf-8)', $filename) or die "Could not open file '$filename' $!";
     $text = <$file>;
 
 } else {
@@ -230,7 +233,7 @@ if ( -e $filename ) {
         die "Nothing was found for $resource $id";
     }
 
-    open($file, '>', $filename) or die "Could not open file '$filename' $!";
+    open($file, '>:encoding(utf-8)', $filename) or die "Could not open file '$filename' $!";
     print $file "$text";
 
 }
@@ -242,6 +245,8 @@ system("mkdir -p $character_folder") unless(-d $character_folder);
 my $character_filename = "$character_folder/$id";
 
 # Post-substitutions
+$text =~ s/\xA0//g;  # &nbsp;
+$text =~ s/ +/ /g;
 $text =~ s/\$r/$race/gi;
 $text =~ s/\$c/$class/gi;
 $text =~ s/\$n/$name/gi;
@@ -251,7 +256,7 @@ if ( $gender eq 'male' ) {
     $text =~ s/\$g([\w']*):([\w']*)(?::[\w']?)?;/$2/gi;
 }
 
-open(my $character_file, '>', $character_filename) or die "Could not open file '$character_filename' $!";
+open(my $character_file, '>:encoding(utf-8)', $character_filename) or die "Could not open file '$character_filename' $!";
 print $character_file "$text";
 close $file;
 

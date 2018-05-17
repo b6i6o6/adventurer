@@ -117,7 +117,7 @@
     #1
 }
 \newcommand {\fetchresource}[7] {%
-    \immediate\write18{perl fetch_resource.pl #1 #2 #3 #4 #5 #6 #7}
+    \immediate\write18{perl fetch_resource.pl #1 #2 #3 #4 #5 #6 #7}%
 }
 \newcommand {\fetch}[2] {%
     \IfFileExists{Cache/\character/#1/#2}{}{%
@@ -151,7 +151,7 @@
     \fetch{quest_starter}{#2} #1: \fetch{quest_description}{#2}
 }
 \newcommand {\wowheadquest}[7] {%
-    \immediate\write18{perl wowhead_quest.pl #1 #2 #3 #4 #5 #6 #7}
+    \immediate\write18{perl wowhead_quest.pl #1 #2 #3 #4 #5 #6 #7}%
 }
 \newcommand {\fetchwowhead}[2] {%
     \IfFileExists{Cache/\character/#2/#1}{}{%
