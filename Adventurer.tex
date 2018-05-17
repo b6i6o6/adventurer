@@ -44,6 +44,13 @@
     \hspace*{-.4in}\makebox[\textwidth][c]{\raisebox{-.5\height}[0pt][0pt]{\includegraphics[height=0.6\paperheight,angle=90]{Maps/#1.jpg}}}\par\label{#1}
     \vfill\mbox{}
 }
+\newcommand {\logo}[1]{
+    \fancyhead{}
+    \fancyfoot{}
+    \begin{figure}
+        \includegraphics[width=\textwidth]{Logos/#1.png}\par\label{#1}
+    \end{figure}
+}
 \newcommand {\prepareQuestURI}[1] {
     \immediate\openout\tempfile=page.tmp
     \immediate\write\tempfile{#1}
@@ -110,7 +117,7 @@
     #1
 }
 \newcommand {\fetchresource}[7] {%
-    \input|"perl fetch_resource.pl #1 #2 #3 #4 #5 #6 #7"
+    \immediate\write18{perl fetch_resource.pl #1 #2 #3 #4 #5 #6 #7}
 }
 \newcommand {\fetch}[2] {%
     \IfFileExists{Cache/\character/#1/#2}{}{%
@@ -139,12 +146,12 @@
 \newcommand {\yells}[2] {
     \speech{#1}{yells}{#2}
 }
-\newcommand {\startID}[1] {
-    \marker{Quest}{0.5}{\fetch{quest_name}{#1}}
-    \fetch{quest_starter}{#1} says: \fetch{quest_description}{#1}
+\newcommand {\startID}[2][says] {
+    \marker{Quest}{0.5}{\fetch{quest_name}{#2}}
+    \fetch{quest_starter}{#2} #1: \fetch{quest_description}{#2}
 }
 \newcommand {\wowheadquest}[7] {%
-    \input|"perl wowhead_quest.pl #1 #2 #3 #4 #5 #6 #7"\unskip
+    \immediate\write18{perl wowhead_quest.pl #1 #2 #3 #4 #5 #6 #7}
 }
 \newcommand {\fetchwowhead}[2] {%
     \IfFileExists{Cache/\character/#2/#1}{}{%
@@ -152,12 +159,12 @@
     }%
     \input{Cache/\character/#2/#1}\unskip
 }
-\newcommand {\progressID}[1] {
-    \fetch{quest_ender}{#1} says: \fetchwowhead{#1}{quest_progress}
+\newcommand {\progressID}[2][says] {
+    \fetch{quest_ender}{#2} #1: \fetchwowhead{#2}{quest_progress}
 }
-\newcommand {\completeID}[1] {
-    \marker{QuestComplete}{0.5}{\fetch{quest_name}{#1}}
-    \fetch{quest_ender}{#1} says: \fetchwowhead{#1}{quest_completion}
+\newcommand {\completeID}[2][says] {
+    \marker{QuestComplete}{0.5}{\fetch{quest_name}{#2}}
+    \fetch{quest_ender}{#2} #1: \fetchwowhead{#2}{quest_completion}
 }
 \newcommand {\itemflavor}[1] {%
     \fetchwowhead{#1}{itemflavor}%
@@ -176,6 +183,22 @@
     \fancyhead[L]{
         \sc #1
         \includegraphics[scale=0.4,valign=c]{Icons/MinimapArrowSmall.png} \pageref{#1}
+    }
+    \fancyfoot[LE,RO]{\thepage}
+    \fancyfoot[RE,LO]{
+        \includegraphics[scale=0.4,valign=m]{Icons/Hearthstone.png} \pageref{\currenthearthstone}
+    }
+    \addcontentsline{toc}{chapter}{#1}
+    \import{"Zones/#1/"}{"#1"}
+}
+\newcommand {\patch}[2] {
+    \cleartoleftpage
+    \logo{#1}
+    \chapter*{\centering #1}
+    \fancyhead[L]{
+        \sc #1
+        % % TODO: A marker towards the trailer ?
+        % \includegraphics[scale=0.4,valign=c]{Icons/MinimapArrowSmall.png} \pageref{#1}
     }
     \fancyfoot[LE,RO]{\thepage}
     \fancyfoot[RE,LO]{
@@ -257,6 +280,8 @@
 \zone{Tanaris}
 
 \zone{Silithus}
+
+\patch{Rise of the Zandalari}
 
 \import{Zones/Hearthstone/}{Hearthstone}
 

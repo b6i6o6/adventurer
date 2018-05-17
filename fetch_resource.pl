@@ -79,19 +79,37 @@ if ( $resource eq 'npc') {
 
     if ( $locale eq 'enUS') {
 
-        $column = "TRIM(ct.name)";
-        $table = "creature_queststarter cq
-            JOIN creature_template ct ON ct.entry=cq.id
+        $column = "TRIM(COALESCE(c.name, g.name))";
+        $table = "(
+                creature_queststarter cq
+                JOIN creature_template ct ON ct.entry=cq.id
+            ) as c
+            FULL OUTER JOIN (
+                gameobject_queststarter gq
+                JOIN gameobject_template gt ON gt.entry=gq.id
+            ) as g
+            ON g.quest=c.quest
         ";
-        $where = "cq.quest = $id"
+        $where = "c.quest=$id OR g.quest=$id"
 
     } else {
 
-        $column = "TRIM(ct.name)";
-        $table = "creature_queststarter cq
-            JOIN creature_template_locale ct ON ct.entry=cq.id
+        $column = "TRIM(COALESCE(c.name, g.name))";
+        $table = "(
+                creature_queststarter cq
+                JOIN creature_template_locale ct ON ct.entry=cq.id
+            ) as c
+            FULL OUTER JOIN (
+                gameobject_queststarter gq
+                JOIN gameobject_template_locale gt ON gt.entry=gq.id
+            ) as g
+            ON c.quest=g.quest
         ";
-        $where = "cq.quest = $id"
+        $where = "(
+            c.quest=$id OR g.quest=$id
+        ) AND (
+            c.locale=\'$locale\' OR g.locale=\'$locale\'
+        )"
 
     }
 
@@ -99,19 +117,37 @@ if ( $resource eq 'npc') {
 
     if ( $locale eq 'enUS') {
 
-        $column = "TRIM(ct.name)";
-        $table = "creature_questender cq
-            JOIN creature_template ct ON ct.entry=cq.id
+        $column = "TRIM(COALESCE(c.name, g.name))";
+        $table = "(
+                creature_questender cq
+                JOIN creature_template ct ON ct.entry=cq.id
+            ) as c
+            FULL OUTER JOIN (
+                gameobject_questender gq
+                JOIN gameobject_template gt ON gt.entry=gq.id
+            ) as g
+            ON g.quest=c.quest
         ";
-        $where = "cq.quest = $id"
+        $where = "c.quest=$id OR g.quest=$id"
 
     } else {
 
-        $column = "TRIM(ct.name)";
-        $table = "creature_questender cq
-            JOIN creature_template_locale ct ON ct.entry=cq.id
+        $column = "TRIM(COALESCE(c.name, g.name))";
+        $table = "(
+                creature_questender cq
+                JOIN creature_template_locale ct ON ct.entry=cq.id
+            ) as c
+            FULL OUTER JOIN (
+                gameobject_questender gq
+                JOIN gameobject_template_locale gt ON gt.entry=gq.id
+            ) as g
+            ON c.quest=g.quest
         ";
-        $where = "cq.quest = $id"
+        $where = "(
+            c.quest=$id OR g.quest=$id
+        ) AND (
+            c.locale=\'$locale\' OR g.locale=\'$locale\'
+        )"
 
     }
 
@@ -161,10 +197,6 @@ if ( $resource eq 'npc') {
     die "Unrecognized resource type $resource";
 }
 
-if ( $locale ne 'enUS' ) {
-    $where .= " AND locale=\'$locale\'";
-}
-
 my $cache_folder = "./Cache/$locale/$resource";
 system("mkdir -p $cache_folder") unless(-d $cache_folder);
 my $filename = "$cache_folder/$id";
@@ -177,11 +209,11 @@ if ( -e $filename ) {
     $text = <$file>;
 
 } else {
-    $text = `psql -t -A -P "footer=off" -c "
-        SELECT $column
-        FROM $table
-        WHERE $where;
-    " world`;
+    my $query = "SELECT $column FROM $table WHERE $where LIMIT 1;";
+
+    # print "$query\n";
+
+    $text = `psql -t -A -P "footer=off" -c "$query" world`;
 
     if ( $? ) {
         die "Error fetching $resource $id";
@@ -223,4 +255,4 @@ open(my $character_file, '>', $character_filename) or die "Could not open file '
 print $character_file "$text";
 close $file;
 
-print "$text";
+print "$text\n";

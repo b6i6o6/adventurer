@@ -124,4 +124,4 @@ open(my $character_file, '>', $character_filename) or die "Could not open file '
 print $character_file "$text";
 close $file;
 
-print "$text";
+print "$text\n";
