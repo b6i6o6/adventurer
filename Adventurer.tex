@@ -150,6 +150,10 @@
     \marker{Quest}{0.5}{\fetch{quest_name}{#2}}
     \fetch{quest_starter}{#2} #1: \fetch{quest_description}{#2}
 }
+\WithSuffix\newcommand\startID*[1] {
+    \marker{Quest}{0.5}{\fetch{quest_name}{#1}}
+    \fetch{quest_description}{#1}
+}
 \newcommand {\wowheadquest}[7] {%
     \immediate\write18{perl wowhead_quest.pl #1 #2 #3 #4 #5 #6 #7}%
 }
@@ -166,11 +170,29 @@
     \marker{QuestComplete}{0.5}{\fetch{quest_name}{#2}}
     \fetch{quest_ender}{#2} #1: \fetchwowhead{#2}{quest_completion}
 }
+\WithSuffix\newcommand\completeID*[1] {
+    \marker{QuestComplete}{0.5}{\fetch{quest_name}{#1}}
+    \fetchwowhead{#1}{quest_completion}
+}
 \newcommand {\itemflavor}[1] {%
     \fetchwowhead{#1}{itemflavor}%
 }
 \newcommand {\itemuse}[1] {%
     \fetchwowhead{#1}{itemuse}%
+}
+\newcommand {\questlog}[1] {
+    \fetch{quest_logdescription}{#1}
+}
+\newcommand {\fulfillID}[1] {
+    You \questlog{#1}.%
+}
+
+\newcommand {\questID}[1] {
+    \startID{#1}
+
+    \fullfillID{#1}
+
+    \completeID{#1}
 }
 \newcommand*\cleartoleftpage{
   \clearpage
@@ -214,9 +236,20 @@
     \label{#1}
     \input{"#1"}
 }
+\newcommand {\breadcrumbA}[1] {
+    \fancyhead[R]{\sc #1}
+    \subsection*{\centering\includegraphics[scale=0.6]{Icons/Alliance.png} #1}
+    \addcontentsline{toc}{section}{\hspace{-0.55cm}\protect\raisebox{-0.1cm}{\protect\includegraphics[scale=0.5]{Icons/Alliance.png}} #1}
+    \label{#1}
+    \input{"#1"}
+}
 \newcommand {\subzone}[1] {
     \clearpage
     \breadcrumb{#1}
+}
+\newcommand {\subzoneA}[1] {
+    \clearpage
+    \breadcrumbA{#1}
 }
 \newcommand {\ask}[1] {
     \noindent$\longrightarrow$ \textit{#1}\newline

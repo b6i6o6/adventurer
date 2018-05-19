@@ -168,6 +168,20 @@ if ( $resource eq 'npc') {
 
     }
 
+} elsif ( $resource eq 'quest_logdescription' ) {
+
+    if ( $locale eq 'enUS') {
+
+        $column = "logdescription";
+        $table = "quest_template";
+
+    } else {
+
+        $column = "logdescription";
+        $table = "quest_template_locale";
+
+    }
+
 } elsif ( $resource eq 'quest_progress' ) {
 
     if ( $locale eq 'enUS') {
@@ -254,6 +268,11 @@ if ( $gender eq 'male' ) {
     $text =~ s/\$g([\w']*):([\w']*)(?::[\w']?)?;/$1/gi;
 } else {
     $text =~ s/\$g([\w']*):([\w']*)(?::[\w']?)?;/$2/gi;
+}
+
+if ( $resource eq 'quest_logdescription' ) {
+    $text =~ s/^(\w)/\l$1/g;
+    $text =~ s/.$//g;
 }
 
 open(my $character_file, '>:encoding(utf-8)', $character_filename) or die "Could not open file '$character_filename' $!";
