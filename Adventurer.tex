@@ -180,8 +180,8 @@
 \newcommand {\itemuse}[1] {%
     \fetchwowhead{#1}{itemuse}%
 }
-\newcommand {\questlog}[1] {
-    \fetch{quest_logdescription}{#1}
+\newcommand {\questlog}[1] {%
+    \fetch{quest_logdescription}{#1}%
 }
 \newcommand {\fulfillID}[1] {
     You \questlog{#1}.%
@@ -243,6 +243,13 @@
     \label{#1}
     \input{"#1"}
 }
+\newcommand {\breadcrumbH}[1] {
+    \fancyhead[R]{\sc #1}
+    \subsection*{\centering\includegraphics[scale=0.6]{Icons/Horde.png} #1}
+    \addcontentsline{toc}{section}{\hspace{-0.55cm}\protect\raisebox{-0.1cm}{\protect\includegraphics[scale=0.5]{Icons/Horde.png}} #1}
+    \label{#1}
+    \input{"#1"}
+}
 \newcommand {\subzone}[1] {
     \clearpage
     \breadcrumb{#1}
@@ -250,6 +257,10 @@
 \newcommand {\subzoneA}[1] {
     \clearpage
     \breadcrumbA{#1}
+}
+\newcommand {\subzoneH}[1] {
+    \clearpage
+    \breadcrumbH{#1}
 }
 \newcommand {\ask}[1] {
     \noindent$\longrightarrow$ \textit{#1}\newline
