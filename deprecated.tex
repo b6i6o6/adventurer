@@ -1,0 +1,63 @@
+\newcommand {\prepareQuestURI}[1] {
+    \immediate\openout\tempfile=page.tmp
+    \immediate\write\tempfile{#1}
+    \immediate\closeout\tempfile
+    \immediate\write18{cat page.tmp | perl uri_escape.pl > page_uri.tmp}
+}
+\newcommand {\custom}[3][] {
+    \prepareQuestURI{#2}
+    \input|"./cache.sh #1 | perl extract_data.pl '#3' \character"
+}
+\newcommand {\quest}[1] {
+    \marker{Quest}{0.5}{#1}
+    \custom[Quest]{#1}{Description}
+}
+\newcommand {\questA}[1] {
+    \quest{#1 (Alliance)}
+}
+\newcommand {\questH}[1] {
+    \quest{#1 (Horde)}
+}
+\newcommand {\start}[1] {
+    \quest{#1}
+}
+\newcommand {\startA}[1] {
+    \questA{#1}
+}
+\newcommand {\startH}[1] {
+    \questH{#1}
+}
+\newcommand {\complete}[1] {
+    \marker{QuestComplete}{0.5}{#1}
+    \custom[Quest]{#1}{Completion}
+}
+\newcommand {\completeA}[1] {
+    \complete{#1 (Alliance)}
+}
+\newcommand {\completeH}[1] {
+    \complete{#1 (Horde)}
+}
+\newcommand {\progress}[1] {
+    \custom[Quest]{#1}{Progress}
+}
+\newcommand {\progressA}[1] {
+    \progress{#1 (Alliance)}
+}
+\newcommand {\progressH}[1] {
+    \progress{#1 (Horde)}
+}
+\WithSuffix\newcommand\progress*[1] {
+    % TODO: Improve the perl script to *not* do 'npc says' in this case
+    STAR\custom[Quest]{#1}{Progress}
+}
+\newcommand {\dialogue}[2][] {          % For NPCs, can be overriden
+    \custom[#1]{#2}{Dialogue}
+}
+\newcommand {\quotes}[2][Quotes] {      % For NPCs, cannot be overriden
+    \custom{#2}{#1}
+}
+\newcommand {\flower}[1] {
+    % TODO: Make an index of flowers
+    #1
+}
+\newcommand {\miss}[1]{#1}  % Used to indicate what is missing from wowpedia
